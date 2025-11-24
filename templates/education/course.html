@@ -5,7 +5,7 @@
 {{ soni }}
 <h1>Kurs: {{birlik}}=={{qiymat}} so'm</h1>
 {% for c in courses %}
-<a href="{% url 'course:detail' c.pk %}"> <h1>Nomi:{{ c.title }}</h1></a>
+<a href="{% url 'course:course' c.pk %}"> <h1>Nomi:{{ c.title }}</h1></a>
 
 
 <p>Haqida:  {{ c.description }}</p>
