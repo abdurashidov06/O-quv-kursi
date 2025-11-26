@@ -1,22 +1,24 @@
 {% extends 'base.html' %}
 {% block content %}
 
-<h1>List </h1>
+<h1>List</h1>
 {{ soni }}
-<h1>Kurs: {{birlik}}=={{qiymat}} so'm</h1>
+<h1>Kurs: {{ birlik }} == {{ qiymat }} so'm</h1>
+
 {% for c in courses %}
-<a href="{% url 'course:course' c.pk %}"> <h1>Nomi:{{ c.title }}</h1></a>
 
+<a href="{% url 'course:detail' c.pk %}">
+    <h1>Nomi: {{ c.title }}</h1>
+</a>
 
-<p>Haqida:  {{ c.description }}</p>
+<p>Haqida: {{ c.description }}</p>
+<p>Narxi: {{ c.price }}</p>
 
-
-
-<p>Narxi:{{ c.price }}</p>
 <a href="{% url 'course:update' c.pk %}">change</a>
 <a href="{% url 'course:delete' c.pk %}">delete</a>
 
 <hr>
+
 {% endfor %}
 
 {% endblock %}

@@ -1,7 +1,7 @@
 from django.shortcuts import redirect, render
 
 from education.edu_models.course import Course
-from education.forms.course import CourseForm
+from education.edu_forms.course import CourseForm
 
 
 # update

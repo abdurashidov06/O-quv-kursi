@@ -1,10 +1,10 @@
 from django.urls import path
-from education.views.course import course_delete, course_detail, course_update
-from education.views.group import get_group
-from education.views.course import course_list
-from education.views.narmativ import normative_list
-from education.views.student import get_student
-from education.views.teacher import get_teachers
+from education.edu_views.course import course_delete, course_detail, course_update
+from education.edu_views.group import get_group
+from education.edu_views.course import course_list
+from education.edu_views.narmativ import normative_list
+from education.edu_views.student import get_student
+from education.edu_views.teacher import get_teachers
 
 app_name = 'course'
 
