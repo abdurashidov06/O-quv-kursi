@@ -1,9 +1,9 @@
-from django.forms import forms
+from django import forms
 
 from education.edu_models.course import Course
 
 
-class CourseForm(forms.Form):
+class CourseForm(forms.ModelForm):
     class Meta:
         model = Course
         fields = [
@@ -13,3 +13,4 @@ class CourseForm(forms.Form):
             'duration',
             'price',
         ]
+

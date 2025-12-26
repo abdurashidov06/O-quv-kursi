@@ -1,0 +1,9 @@
+{% extends 'base.html' %}
+{% block content %}
+<p>Kurs xaqida ma'lumot </p>
+{% for c in courses %}
+{{ c.name }}
+{{ c.image }}
+<button type="submit">delete</button>
+{% endfor %}
+{% endblock %}

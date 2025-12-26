@@ -29,13 +29,24 @@
 <div class="d-flex">
     <nav class="sidebar p-3">
         <div class="text-white fw-bold mb-4">O'quv Markaz</div>
-
         <ul class="nav nav-pills flex-column mb-auto">
-            <li class="nav-item"><a href="#" class="nav-link text-white"><i class="bi bi-speedometer2 me-2"></i>Statistika</a></li>
+                        {% if request.user.is_authenticated %}
+
+            <li class="nav-item"><a href="{% url 'logout' %}" class="nav-link text-white"><i class="bi bi-speedometer2 me-2"></i>logout</a></li>
+            {% else %}
+            <li class="nav-item"><a href="{% url 'login' %}" class="nav-link text-white"><i class="bi bi-speedometer2 me-2"></i>Login</a></li>
+
+            {% endif %}
+            <li class="nav-item"><a href="{% url 'teacher-landing' %}" class="nav-link text-white"><i class="bi bi-speedometer2 me-2"></i> Teacher Statistika</a></li>
+            <li class="nav-item"><a href="{% url 'admin-landing' %}" class="nav-link text-white"><i class="bi bi-speedometer2 me-2"></i>Statistika</a></li>
             <li><a href="#" class="nav-link text-white"><i class="bi bi-journal-text me-2"></i>Yangiliklar</a></li>
             <li><a href="#" class="nav-link text-white"><i class="bi bi-grid me-2"></i>Katalog</a></li>
-            <li><a href="#" class="nav-link text-white"><i class="bi bi-people me-2"></i>Guruhlar</a></li>
             <li><a href="#" class="nav-link text-white"><i class="bi bi-gear me-2"></i>Sozlamalar</a></li>
+            <li><a href="{% url 'normative-create' %}" class="nav-link text-white"><i class="bi bi-gear me-2"></i>Narmative create</a></li>
+            <li><a href="{% url 'normative-list' %}" class="nav-link text-white"><i class="bi bi-gear me-2"></i>Narmatives</a></li>
+            <li><a href="{% url 'group-list' %}" class="nav-link text-white"><i class="bi bi-gear me-2"></i>Groups</a></li>
+            <li><a href="{% url 'student-list' %}" class="nav-link text-white"><i class="bi bi-gear me-2"></i>Students</a></li>
+            <li><a href="{% url 'assign-list' %}" class="nav-link text-white"><i class="bi bi-gear me-2"></i>Tekshirilmagan narmativlar</a></li>
         </ul>
 
         <div class="mt-4">

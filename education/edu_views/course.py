@@ -1,44 +1,42 @@
 from django.shortcuts import render, redirect
 
-from education.edu_models.course import Course
 from education.edu_forms.course import CourseForm
+from education.edu_models.course import Course
 
 
-def course_list(request):
+def get_courses(request):
     courses = Course.objects.all()
     context = {
         'courses': courses,
     }
-    return render(request, 'education/course.html', context)
+    return render(request, 'course/course.html', context)
 
 
-def course_update(request):
-    course = Course.objects.get(id=request.POST.get('course_id'))
-    if request.method == 'POST':
-        form = CourseForm(request.POST)
-        if form.is_valid():
-            form.save()
-            return redirect('/course')
-        else:
-            form = CourseForm(instance=course)
-            context = {
-                'form': form,
-            }
-            return render(request, 'courses-update.html', context)
-
-
-def course_detail(request, pk):
-    course = Course.objects.filter(pk=pk).first()
+def course_detail(request, course_id):
+    course = Course.objects.get(id=course_id)
     context = {
-        'c': course
+        'courses': course,
     }
-    return render(request, "course/detail.html", context)
+    return render(request, 'course/detail.html', context)
 
+def course_update(request, course_id):
+    course = Course.objects.get(id=course_id)
+    if request.method == 'POST':
+        form = CourseForm(request.POST, instance=course)
+        if form.is_valid():
+            form.name=request.POST.get('name')
+            form.description=request.POST.get('description')
+            form.duration=request.POST.get('duration')
+            form.price=request.POST.get('price')
+            form.save()
+            return render(request, 'course/detail.html', {})
+    else:
+        return render(request, 'course/update.html', {})
 
-def course_delete(request,pk):
-    course = Course.objects.filter(pk=pk).first()
+def course_delete(request, course_id):
+    course = Course.objects.get(id=course_id)
     if request.method == 'POST':
         course.delete()
-        return redirect('course:list')
+        return render(request, 'course/course.html')
     else:
-        return render(request, "course/delete.html", {'course':course})
+        return render(request, 'course/delete.html')
